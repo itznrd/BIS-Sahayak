@@ -1,0 +1,21 @@
+IS 16102 (Part 1) - Self-ballasted LED Lamps for General Lighting Services
+
+Scope: This standard specifies requirements for self-ballasted LED lamps used for general
+lighting purposes with a rated voltage of 220-240V. It covers safety requirements including
+electrical insulation, thermal performance, and mechanical strength.
+
+Certification: Products under this standard require ISI mark certification through BIS.
+Manufacturers must apply for a license under the Compulsory Registration Scheme (CRS) if the
+product falls under the notified list of electronics and IT goods.
+
+Testing Requirements: Samples must be tested at a BIS-recognized laboratory for parameters
+such as insulation resistance, dielectric strength, thermal cycling, and photometric output
+(lumen output, color temperature). Test reports must be submitted along with the license
+application.
+
+Related Standards: IS 16101 (Self-ballasted LED lamps - Performance requirements),
+IS 10322 (General lighting - Safety requirements for luminaires).
+
+Common Queries: Consumers often ask how to verify if an LED bulb is genuinely ISI certified.
+The ISI mark on the product, along with a license number, can be verified on the BIS CareNet
+portal or the BIS Standard Mark App.

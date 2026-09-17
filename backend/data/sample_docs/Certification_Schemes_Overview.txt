@@ -1,0 +1,24 @@
+Overview of BIS Product Certification Schemes
+
+ISI Mark Scheme: The traditional product certification scheme where manufacturers apply for
+a license against a specific Indian Standard, undergo factory inspection, and submit samples
+for testing at a BIS-recognized laboratory. Once granted, the ISI mark can be used on the
+product along with the license number.
+
+Compulsory Registration Scheme (CRS): Applies mainly to electronics and IT goods notified
+under the Electronics and IT Goods (Requirements for Compulsory Registration) Order. Under
+CRS, manufacturers register their product model after testing at a BIS-recognized lab, and
+must display the Standard Mark with a registration number, but the process is generally
+lighter than a full ISI license (no periodic factory surveillance in the same way).
+
+Foreign Manufacturers Certification Scheme (FMCS): Allows manufacturers located outside India
+to obtain a BIS license for their products, following a similar process to the ISI mark
+scheme but adapted for factories located abroad.
+
+Hallmarking Scheme: A separate certification stream specific to gold and silver jewellery,
+focused on purity verification rather than safety/performance testing.
+
+Licensing Procedure (general steps): 1) Identify the applicable Indian Standard for the
+product. 2) Apply online via the BIS Care Manak portal. 3) Factory inspection by BIS
+officials. 4) Sample testing at a BIS-recognized laboratory. 5) Grant of license and
+authorization to use the mark, subject to periodic surveillance and renewal.

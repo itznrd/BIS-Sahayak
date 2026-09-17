@@ -1,0 +1,20 @@
+BIS Hallmarking Scheme for Gold Jewellery
+
+Scope: Hallmarking is a purity certification scheme for gold jewellery and artefacts. It is
+mandatory in India for gold jewellery sold by registered jewellers, under the BIS Hallmarking
+framework.
+
+Certification Process: Jewellers must register with BIS to sell hallmarked jewellery. Each
+piece is tested and marked at an Assaying and Hallmarking Centre (AHC) recognized by BIS. The
+hallmark includes the BIS logo, purity grade (e.g., 22K916 for 22 karat gold), the AHC
+identification mark, and a unique HUID (Hallmark Unique Identification) number.
+
+Testing Requirements: Gold purity is verified using standard assaying methods at the AHC.
+Each item is assigned a HUID which can be verified by consumers through the BIS CARE app.
+
+Related Standards: IS 1417 (Methods for determination of gold purity), IS 2790 (Guidelines
+for manufacture of 22 karat gold jewellery).
+
+Common Queries: Consumers frequently ask how to verify a hallmark before buying. This can be
+done via the BIS CARE mobile app by entering the HUID number, or by checking that all four
+hallmark components (BIS logo, purity grade, AHC mark, HUID) are present.

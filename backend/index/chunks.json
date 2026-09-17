@@ -1,0 +1,128 @@
+{
+  "chunks": [
+    "Overview of BIS Product Certification Schemes",
+    "ISI Mark Scheme: The traditional product certification scheme where manufacturers apply for a license against a specific Indian Standard, undergo factory inspection, and submit samples for testing at a BIS-recognized laboratory. Once granted, the ISI mark can be used on the product along with the license number.",
+    "Compulsory Registration Scheme (CRS): Applies mainly to electronics and IT goods notified under the Electronics and IT Goods (Requirements for Compulsory Registration) Order. Under CRS, manufacturers register their product model after testing at a BIS-recognized lab, and must display the Standard Mark with a registration number, but the process is generally lighter than a full ISI license (no periodic factory surveillance in the same way).",
+    "Foreign Manufacturers Certification Scheme (FMCS): Allows manufacturers located outside India to obtain a BIS license for their products, following a similar process to the ISI mark scheme but adapted for factories located abroad.",
+    "Hallmarking Scheme: A separate certification stream specific to gold and silver jewellery, focused on purity verification rather than safety/performance testing.",
+    "Licensing Procedure (general steps): 1) Identify the applicable Indian Standard for the product. 2) Apply online via the BIS Care Manak portal. 3) Factory inspection by BIS officials. 4) Sample testing at a BIS-recognized laboratory. 5) Grant of license and authorization to use the mark, subject to periodic surveillance and renewal.",
+    "BIS Hallmarking Scheme for Gold Jewellery",
+    "Scope: Hallmarking is a purity certification scheme for gold jewellery and artefacts. It is mandatory in India for gold jewellery sold by registered jewellers, under the BIS Hallmarking framework.",
+    "Certification Process: Jewellers must register with BIS to sell hallmarked jewellery. Each piece is tested and marked at an Assaying and Hallmarking Centre (AHC) recognized by BIS. The hallmark includes the BIS logo, purity grade (e.g., 22K916 for 22 karat gold), the AHC identification mark, and a unique HUID (Hallmark Unique Identification) number.",
+    "Testing Requirements: Gold purity is verified using standard assaying methods at the AHC. Each item is assigned a HUID which can be verified by consumers through the BIS CARE app.",
+    "Related Standards: IS 1417 (Methods for determination of gold purity), IS 2790 (Guidelines for manufacture of 22 karat gold jewellery).",
+    "Common Queries: Consumers frequently ask how to verify a hallmark before buying. This can be done via the BIS CARE mobile app by entering the HUID number, or by checking that all four hallmark components (BIS logo, purity grade, AHC mark, HUID) are present.",
+    "IS 4151 - Protective Helmets for Two-Wheeler Riders",
+    "Scope: This standard covers requirements for protective helmets intended for use by riders of two-wheeled motor vehicles, including shell construction, padding, retention system, and visor requirements.",
+    "Certification: Helmets falling under this standard are covered by the Compulsory Registration Scheme, and manufacturers must hold a valid BIS license to use the ISI mark. Selling helmets without ISI certification is prohibited under the relevant government notification.",
+    "Testing Requirements: Helmets are tested at BIS-recognized labs for impact absorption, penetration resistance, retention system strength, and peripheral vision. A minimum shell weight and thickness must also be verified.",
+    "Related Standards: IS 4151 is often referenced alongside IS 2925 (Industrial safety helmets) for comparison, though the two serve different use cases (road safety vs industrial safety).",
+    "Common Queries: Many consumers ask how to differentiate a genuine ISI-marked helmet from a counterfeit. Genuine helmets carry the ISI mark, a BIS license number, and manufacturing details molded or printed on the inner shell, not just a sticker.",
+    "IS 16102 (Part 1) - Self-ballasted LED Lamps for General Lighting Services",
+    "Scope: This standard specifies requirements for self-ballasted LED lamps used for general lighting purposes with a rated voltage of 220-240V. It covers safety requirements including electrical insulation, thermal performance, and mechanical strength.",
+    "Certification: Products under this standard require ISI mark certification through BIS. Manufacturers must apply for a license under the Compulsory Registration Scheme (CRS) if the product falls under the notified list of electronics and IT goods.",
+    "Testing Requirements: Samples must be tested at a BIS-recognized laboratory for parameters such as insulation resistance, dielectric strength, thermal cycling, and photometric output (lumen output, color temperature). Test reports must be submitted along with the license application.",
+    "Related Standards: IS 16101 (Self-ballasted LED lamps - Performance requirements), IS 10322 (General lighting - Safety requirements for luminaires).",
+    "Common Queries: Consumers often ask how to verify if an LED bulb is genuinely ISI certified. The ISI mark on the product, along with a license number, can be verified on the BIS CareNet portal or the BIS Standard Mark App."
+  ],
+  "metadata": [
+    {
+      "source": "Certification_Schemes_Overview.txt",
+      "chunk_id": 0
+    },
+    {
+      "source": "Certification_Schemes_Overview.txt",
+      "chunk_id": 1
+    },
+    {
+      "source": "Certification_Schemes_Overview.txt",
+      "chunk_id": 2
+    },
+    {
+      "source": "Certification_Schemes_Overview.txt",
+      "chunk_id": 3
+    },
+    {
+      "source": "Certification_Schemes_Overview.txt",
+      "chunk_id": 4
+    },
+    {
+      "source": "Certification_Schemes_Overview.txt",
+      "chunk_id": 5
+    },
+    {
+      "source": "Hallmarking_Gold.txt",
+      "chunk_id": 0
+    },
+    {
+      "source": "Hallmarking_Gold.txt",
+      "chunk_id": 1
+    },
+    {
+      "source": "Hallmarking_Gold.txt",
+      "chunk_id": 2
+    },
+    {
+      "source": "Hallmarking_Gold.txt",
+      "chunk_id": 3
+    },
+    {
+      "source": "Hallmarking_Gold.txt",
+      "chunk_id": 4
+    },
+    {
+      "source": "Hallmarking_Gold.txt",
+      "chunk_id": 5
+    },
+    {
+      "source": "IS_Helmets.txt",
+      "chunk_id": 0
+    },
+    {
+      "source": "IS_Helmets.txt",
+      "chunk_id": 1
+    },
+    {
+      "source": "IS_Helmets.txt",
+      "chunk_id": 2
+    },
+    {
+      "source": "IS_Helmets.txt",
+      "chunk_id": 3
+    },
+    {
+      "source": "IS_Helmets.txt",
+      "chunk_id": 4
+    },
+    {
+      "source": "IS_Helmets.txt",
+      "chunk_id": 5
+    },
+    {
+      "source": "IS_LED_Bulbs.txt",
+      "chunk_id": 0
+    },
+    {
+      "source": "IS_LED_Bulbs.txt",
+      "chunk_id": 1
+    },
+    {
+      "source": "IS_LED_Bulbs.txt",
+      "chunk_id": 2
+    },
+    {
+      "source": "IS_LED_Bulbs.txt",
+      "chunk_id": 3
+    },
+    {
+      "source": "IS_LED_Bulbs.txt",
+      "chunk_id": 4
+    },
+    {
+      "source": "IS_LED_Bulbs.txt",
+      "chunk_id": 5
+    }
+  ],
+  "embed_provider": "jina",
+  "embed_model": "jina-embeddings-v5-omni-small"
+}

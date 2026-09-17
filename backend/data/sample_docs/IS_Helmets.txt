@@ -1,0 +1,20 @@
+IS 4151 - Protective Helmets for Two-Wheeler Riders
+
+Scope: This standard covers requirements for protective helmets intended for use by riders
+of two-wheeled motor vehicles, including shell construction, padding, retention system, and
+visor requirements.
+
+Certification: Helmets falling under this standard are covered by the Compulsory Registration
+Scheme, and manufacturers must hold a valid BIS license to use the ISI mark. Selling helmets
+without ISI certification is prohibited under the relevant government notification.
+
+Testing Requirements: Helmets are tested at BIS-recognized labs for impact absorption,
+penetration resistance, retention system strength, and peripheral vision. A minimum shell
+weight and thickness must also be verified.
+
+Related Standards: IS 4151 is often referenced alongside IS 2925 (Industrial safety helmets)
+for comparison, though the two serve different use cases (road safety vs industrial safety).
+
+Common Queries: Many consumers ask how to differentiate a genuine ISI-marked helmet from a
+counterfeit. Genuine helmets carry the ISI mark, a BIS license number, and manufacturing
+details molded or printed on the inner shell, not just a sticker.
