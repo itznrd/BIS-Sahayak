@@ -14,12 +14,22 @@ convenience for version control, not a runtime coupling.
 
 ## Running locally
 
-Two terminals.
+Before starting the services, configure the backend environment:
+
+```bash
+mv backend/.env.local.example backend/.env
+```
+
+Open `backend/.env` and add your `EMBED_API_KEY` and `GROQ_API_KEY` values.
+Keep this file local; it is ignored by Git.
+
+Use two terminals.
 
 **Terminal 1 — backend**
 ```bash
 cd backend
 uv sync
+source .venv/bin/activate
 uv run python ingest.py          # builds the index
 uv run uvicorn main:app --reload --port 8000
 ```
