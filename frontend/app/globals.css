@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design tokens ─────────────────────────────── */
+/* ── Design tokens (light) ──────────────────────── */
 :root {
   --color-canvas:  #F9FAFB;
   --color-surface: #FFFFFF;
@@ -15,15 +15,15 @@
   --color-input:   #FFFFFF;
 }
 
-/* ── Dark mode overrides ────────────────────────── */
+/* ── Dark mode — #121212 base palette ────────── */
 .dark {
-  --color-canvas:  #060F1A;
-  --color-surface: #0B1929;
-  --color-text:    #E2E8F0;
-  --color-muted:   #94A3B8;
-  --color-border:  #1E3A5F;
-  --color-card:    #0E2A47;
-  --color-input:   #0B1929;
+  --color-canvas:  #121212;  /* base background         */
+  --color-surface: #1C1C1C;  /* header / nav            */
+  --color-text:    #F1F5F9;  /* primary text            */
+  --color-muted:   #6B7280;  /* secondary / placeholder */
+  --color-border:  #2C2C2C;  /* dividers & outlines     */
+  --color-card:    #1E1E1E;  /* cards & bubbles         */
+  --color-input:   #1C1C1C;  /* input fields            */
 }
 
 /* ── Base ───────────────────────────────────────── */
@@ -34,7 +34,7 @@ html {
   background-color: var(--color-canvas);
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 body {
@@ -45,4 +45,4 @@ body {
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 999px; }
-.dark ::-webkit-scrollbar-thumb { background: #1E3A5F; }
+.dark ::-webkit-scrollbar-thumb { background: #2A2A2A; }

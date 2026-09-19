@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Next.js 15: React 19 is the default — no extra flag needed.
-  // Enable Turbopack for local development (optional, recommended for speed).
-  // Run with: next dev --turbopack
-  experimental: {},
+  // Next.js 15 + React 19 — no extra flags needed.
+  // Use: npm run dev -- --turbopack   for faster hot-reload.
+  devIndicators: false,
 };
 
 module.exports = nextConfig;
+
