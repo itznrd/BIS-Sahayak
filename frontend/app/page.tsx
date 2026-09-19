@@ -1,181 +1,293 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ThemeToggle } from "./components/ThemeProvider";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+function BISLogo() {
+  return (
+    <div className="flex items-center gap-2.5">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <circle cx="18" cy="18" r="17" fill="#0E2A47" />
+        <circle cx="18" cy="18" r="11" fill="none" stroke="#087F5B" strokeWidth="2" />
+        <circle cx="18" cy="18" r="5" fill="#087F5B" />
+        <path d="M18 7 L18 11 M18 25 L18 29 M7 18 L11 18 M25 18 L29 18" stroke="#19A982" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+      <div className="flex flex-col leading-tight">
+        <span className="text-[15px] tracking-wide" style={{ color: 'var(--color-text)', fontWeight: 700 }}>BIS AI</span>
+        <span className="text-[10px] tracking-widest uppercase" style={{ color: 'var(--color-muted)', fontWeight: 500 }}>Bureau of Indian Standards</span>
+      </div>
+    </div>
+  );
+}
 
-type Source = {
-  source: string;
-  chunk_id: number;
-  score: number;
-};
+function IconBadgeCheck() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/>
+      <path d="m9 12 2 2 4-4"/>
+    </svg>
+  );
+}
 
-type Message = {
-  role: "user" | "assistant";
-  text: string;
-  sources?: Source[];
-  failed?: boolean;
-};
+function IconFileSearch() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <circle cx="11.5" cy="14.5" r="2.5"/>
+      <path d="M13.25 16.25 15 18"/>
+    </svg>
+  );
+}
 
-const STARTERS = [
-  "Which standard applies to LED bulbs?",
-  "What are the steps to get a BIS licence?",
-  "How do I check if a helmet is really ISI certified?",
+function IconClipboard() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="9" y="2" width="6" height="4" rx="1"/>
+      <path d="M8 6H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-3"/>
+      <path d="m9 14 2 2 4-4"/>
+    </svg>
+  );
+}
+
+function IconArrowRight() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </svg>
+  );
+}
+
+function HeroIllustration() {
+  return (
+    <div className="relative flex items-center justify-center w-full h-full min-h-[380px]">
+      <div className="absolute inset-0 rounded-full" style={{ background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(8,127,91,0.12) 0%, transparent 70%)' }} />
+      <svg width="420" height="380" viewBox="0 0 420 380" fill="none" className="relative z-10 w-full max-w-[420px]" aria-hidden="true">
+        {[60,120,180,240,300,360].map(x => (
+          <line key={`vg-${x}`} x1={x} y1="20" x2={x} y2="360" stroke="#0E2A47" strokeWidth="0.5" opacity="0.08" />
+        ))}
+        {[60,120,180,240,300].map(y => (
+          <line key={`hg-${y}`} x1="20" y1={y} x2="400" y2={y} stroke="#0E2A47" strokeWidth="0.5" opacity="0.08" />
+        ))}
+        <circle cx="210" cy="190" r="90" fill="#087F5B" opacity="0.06" />
+        <circle cx="210" cy="190" r="72" fill="none" stroke="#087F5B" strokeWidth="1" opacity="0.2" strokeDasharray="4 4" />
+        <circle cx="210" cy="190" r="58" fill="#0E2A47" />
+        <circle cx="210" cy="190" r="50" fill="none" stroke="#087F5B" strokeWidth="2" />
+        <circle cx="210" cy="190" r="32" fill="#081A2B" />
+        <circle cx="210" cy="190" r="24" fill="none" stroke="#19A982" strokeWidth="1.5" />
+        <circle cx="210" cy="190" r="12" fill="#087F5B" />
+        <path d="M203 190 L208 196 L218 183" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <text x="210" y="148" textAnchor="middle" fill="#CBD5E1" fontSize="7" fontFamily="Public Sans, sans-serif" letterSpacing="3" opacity="0.7">B I S A I</text>
+        <line x1="252" y1="158" x2="310" y2="100" stroke="#19A982" strokeWidth="1.5" opacity="0.5" />
+        <circle cx="318" cy="92" r="22" fill="white" stroke="#CBD5E1" strokeWidth="1" />
+        <text x="318" y="88" textAnchor="middle" fill="#526477" fontSize="7" fontFamily="Public Sans, sans-serif">IS 1293</text>
+        <text x="318" y="98" textAnchor="middle" fill="#087F5B" fontSize="6" fontFamily="Public Sans, sans-serif">Standards</text>
+        <line x1="168" y1="222" x2="100" y2="280" stroke="#19A982" strokeWidth="1.5" opacity="0.5" />
+        <circle cx="88" cy="288" r="22" fill="white" stroke="#CBD5E1" strokeWidth="1" />
+        <text x="88" y="284" textAnchor="middle" fill="#526477" fontSize="7" fontFamily="Public Sans, sans-serif">CM/L</text>
+        <text x="88" y="295" textAnchor="middle" fill="#087F5B" fontSize="6" fontFamily="Public Sans, sans-serif">Licenses</text>
+        <line x1="248" y1="226" x2="316" y2="280" stroke="#19A982" strokeWidth="1.5" opacity="0.5" />
+        <circle cx="326" cy="288" r="22" fill="white" stroke="#CBD5E1" strokeWidth="1" />
+        <text x="326" y="284" textAnchor="middle" fill="#526477" fontSize="7" fontFamily="Public Sans, sans-serif">CRS</text>
+        <text x="326" y="295" textAnchor="middle" fill="#087F5B" fontSize="6" fontFamily="Public Sans, sans-serif">Applications</text>
+        <rect x="42" y="96" width="110" height="52" rx="10" fill="white" style={{ filter: 'drop-shadow(0 4px 12px rgba(14,42,71,0.10))' }} />
+        <circle cx="62" cy="122" r="10" fill="#DDF7EC" />
+        <path d="M57 122 L61 126 L68 118" stroke="#087F5B" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <text x="78" y="117" fill="#087F5B" fontSize="8" fontWeight="600" fontFamily="Public Sans, sans-serif">Verified</text>
+        <text x="78" y="130" fill="#526477" fontSize="7" fontFamily="Public Sans, sans-serif">IS 1293:2019</text>
+        <rect x="256" y="44" width="120" height="52" rx="10" fill="white" style={{ filter: 'drop-shadow(0 4px 12px rgba(14,42,71,0.10))' }} />
+        <rect x="268" y="56" width="8" height="8" rx="2" fill="#0E2A47" />
+        <text x="284" y="63" fill="#081A2B" fontSize="8" fontWeight="600" fontFamily="Public Sans, sans-serif">CM/L Ref</text>
+        <text x="268" y="81" fill="#526477" fontSize="7" fontFamily="Public Sans, sans-serif">R-41XXXXXX</text>
+      </svg>
+    </div>
+  );
+}
+
+const features = [
+  { icon: <IconBadgeCheck />, heading: 'Verify Licenses', description: 'Find CM/L and R-numbers with less manual searching.' },
+  { icon: <IconFileSearch />, heading: 'Understand Standards', description: 'Simplify IS 1293:2019 and other technical requirements.' },
+  { icon: <IconClipboard />, heading: 'Track Applications', description: 'Check application status while you are on the go.' },
 ];
 
-export default function Home() {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [status, setStatus] = useState<string | null>(null);
-  const endRef = useRef<HTMLDivElement>(null);
+const trustPoints = ['Clear explanations', 'Standards-focused guidance', 'Human-readable compliance support'];
+const navLinks = ['About', 'Standards', 'CRS', 'Services', 'Contact'];
+const footerLinks = {
+  Product: ['About', 'Standards', 'CRS', 'Services'],
+  Support: ['Contact', 'Help', 'Accessibility'],
+  Legal: ['Privacy', 'Terms', 'Disclaimer'],
+};
 
-  useEffect(() => {
-    fetch(`${API_URL}/health`)
-      .then((r) => r.json())
-      .then((d) => {
-        const llm = d.llm_enabled ? "Groq" : "no LLM key";
-        setStatus(`${d.retriever_mode} retrieval · ${llm}`);
-      })
-      .catch(() => setStatus("backend offline"));
-  }, []);
-
-  useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, busy]);
-
-  async function send(text: string) {
-    const query = text.trim();
-    if (!query || busy) return;
-
-    setMessages((m) => [...m, { role: "user", text: query }]);
-    setInput("");
-    setBusy(true);
-
-    try {
-      const res = await fetch(`${API_URL}/ask`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query }),
-      });
-
-      if (!res.ok) {
-        const detail = await res.json().catch(() => ({}));
-        throw new Error(detail.detail ?? `Request failed (${res.status})`);
-      }
-
-      const data = await res.json();
-      setMessages((m) => [
-        ...m,
-        { role: "assistant", text: data.answer, sources: data.sources },
-      ]);
-    } catch (err) {
-      setMessages((m) => [
-        ...m,
-        {
-          role: "assistant",
-          text:
-            err instanceof Error
-              ? `${err.message}. Check that the backend is running on ${API_URL}.`
-              : "Something went wrong.",
-          failed: true,
-        },
-      ]);
-    } finally {
-      setBusy(false);
-    }
-  }
+export default function Landing() {
+  const router = useRouter();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-3xl flex-col px-5">
-      <header className="flex items-baseline justify-between border-b border-line py-5">
-        <div>
-          <h1 className="text-xl font-semibold text-ink">BIS Sahayak</h1>
-          <p className="text-sm text-muted">
-            Indian Standards, certification schemes and licensing
-          </p>
+    <div className="min-h-screen flex flex-col" style={{ background: 'var(--color-canvas)', fontFamily: "'Public Sans', sans-serif" }}>
+
+      {/* Header */}
+      <header className="flex items-center sticky top-0 z-50" style={{ background: 'var(--color-surface)', borderBottom: '1px solid var(--color-border)', height: 76 }}>
+        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-12 flex items-center justify-between">
+          <BISLogo />
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map(link => (
+              <a key={link} href="#"
+                className="px-4 py-2 text-[14px] font-medium transition-colors duration-150 rounded-md"
+                style={{ color: 'var(--color-muted)', fontWeight: 500 }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-text)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-muted)')}
+              >{link}</a>
+            ))}
+            <ThemeToggle />
+            <button
+              onClick={() => router.push('/chat')}
+              className="ml-4 flex items-center gap-2 px-5 py-2 text-[14px] text-white transition-all duration-150"
+              style={{ background: '#087F5B', borderRadius: 10, fontWeight: 600, boxShadow: '0 1px 4px rgba(8,127,91,0.2)' }}
+              onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.background = '#065f46')}
+              onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.background = '#087F5B')}
+            >Launch AI</button>
+          </nav>
+
+          {/* Mobile button */}
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button className="p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu" style={{ color: 'var(--color-text)' }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                {mobileOpen ? <><path d="M18 6 6 18"/><path d="m6 6 12 12"/></> : <><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></>}
+              </svg>
+            </button>
+          </div>
         </div>
-        {status && (
-          <span className="shrink-0 text-xs text-muted">{status}</span>
+
+        {mobileOpen && (
+          <div className="absolute top-[76px] left-0 right-0 md:hidden z-50 px-6 py-4 flex flex-col gap-2" style={{ background: 'var(--color-surface)', borderBottom: '1px solid var(--color-border)' }}>
+            {navLinks.map(link => (
+              <a key={link} href="#" className="py-2 text-[15px] font-medium" style={{ color: 'var(--color-muted)' }}>{link}</a>
+            ))}
+            <button onClick={() => router.push('/chat')} className="mt-2 py-3 text-[15px] text-white rounded-xl" style={{ background: '#087F5B', fontWeight: 600 }}>Launch AI</button>
+          </div>
         )}
       </header>
 
-      <div className="flex-1 space-y-5 py-6">
-        {messages.length === 0 && (
-          <div className="space-y-3 pt-6">
-            <p className="text-sm text-muted">Try asking</p>
-            {STARTERS.map((s) => (
-              <button
-                key={s}
-                onClick={() => send(s)}
-                className="block w-full rounded-lg border border-line bg-white px-4 py-3 text-left text-sm text-ink hover:border-accent"
+      {/* Hero */}
+      <section className="flex-1" style={{ background: 'var(--color-canvas)' }}>
+        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-12 py-16 md:py-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="flex flex-col gap-6">
+              <div className="text-[11px] tracking-[0.15em] uppercase" style={{ color: '#087F5B', fontWeight: 600 }}>
+                Bureau of Indian Standards · Intelligent Assistance
+              </div>
+              <h1 className="font-bold leading-[1.05]" style={{ color: 'var(--color-text)', fontSize: 'clamp(36px, 5vw, 62px)', maxWidth: 610 }}>
+                Navigate Indian Standards Instantly with BIS AI.
+              </h1>
+              <p className="text-[18px] leading-[30px]" style={{ color: 'var(--color-muted)', maxWidth: 520 }}>
+                Get clear guidance on certification processes, IS codes, licensing, and compliance — powered by AI trained on BIS resources.
+              </p>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-2">
+                <button
+                  onClick={() => router.push('/chat')}
+                  className="flex items-center gap-2 px-7 py-3.5 text-[15px] text-white transition-all duration-150"
+                  style={{ background: '#087F5B', borderRadius: 10, fontWeight: 600, boxShadow: '0 4px 16px rgba(8,127,91,0.25)' }}
+                  onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.background = '#065f46')}
+                  onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.background = '#087F5B')}
+                >
+                  Start Chatting Now <IconArrowRight />
+                </button>
+              </div>
+              <p className="text-[13px]" style={{ color: 'var(--color-muted)' }}>
+                Guidance for certification, standards, licensing, and compliance.
+              </p>
+            </div>
+            <div className="w-full"><HeroIllustration /></div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Helps */}
+      <section className="py-16 md:py-20" style={{ background: 'var(--color-surface)' }}>
+        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-12">
+          <div className="mb-10">
+            <p className="text-[11px] tracking-[0.15em] uppercase mb-3" style={{ color: '#087F5B', fontWeight: 600 }}>How It Helps</p>
+            <h2 className="text-[28px] font-bold leading-tight" style={{ color: 'var(--color-text)' }}>A clearer path through compliance</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {features.map(({ icon, heading, description }) => (
+              <div key={heading}
+                className="p-7 rounded-[16px] transition-all duration-200 cursor-default"
+                style={{ background: 'var(--color-card)', border: '1px solid var(--color-border)' }}
+                onMouseEnter={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 24px rgba(14,42,71,0.10)'; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = ''; el.style.boxShadow = ''; }}
               >
-                {s}
-              </button>
+                <div className="flex items-center justify-center rounded-xl mb-5" style={{ width: 44, height: 44, background: '#DDF7EC', color: '#087F5B' }}>{icon}</div>
+                <h3 className="text-[18px] font-bold mb-2" style={{ color: 'var(--color-text)' }}>{heading}</h3>
+                <p className="text-[15px] leading-[24px]" style={{ color: 'var(--color-muted)' }}>{description}</p>
+              </div>
             ))}
           </div>
-        )}
-
-        {messages.map((m, i) =>
-          m.role === "user" ? (
-            <div key={i} className="flex justify-end">
-              <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-accent px-4 py-2.5 text-white">
-                {m.text}
-              </p>
-            </div>
-          ) : (
-            <div key={i} className="max-w-[92%] space-y-3">
-              <p
-                className={`whitespace-pre-wrap leading-relaxed ${
-                  m.failed ? "text-red-700" : "text-ink"
-                }`}
-              >
-                {m.text}
-              </p>
-
-              {m.sources && m.sources.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {m.sources.map((s, j) => (
-                    <span
-                      key={j}
-                      className="rounded border border-cite/30 bg-cite-light px-2 py-1 text-xs text-cite"
-                      title={`Relevance ${s.score}`}
-                    >
-                      {s.source} · chunk {s.chunk_id}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          )
-        )}
-
-        {busy && <p className="text-sm text-muted">Searching the standards…</p>}
-        <div ref={endRef} />
-      </div>
-
-      <div className="sticky bottom-0 bg-paper pb-6 pt-2">
-        <div className="flex gap-2">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && send(input)}
-            placeholder="Ask about a standard, scheme or licence…"
-            disabled={busy}
-            className="flex-1 rounded-lg border border-line bg-white px-4 py-3 text-ink outline-none placeholder:text-muted focus:border-accent disabled:opacity-60"
-          />
-          <button
-            onClick={() => send(input)}
-            disabled={busy || !input.trim()}
-            className="rounded-lg bg-accent px-5 py-3 font-medium text-white disabled:opacity-40"
-          >
-            Ask
-          </button>
         </div>
-        <p className="pt-2 text-xs text-muted">
-          Prototype using sample data. Verify anything official against bis.gov.in.
-        </p>
-      </div>
-    </main>
+      </section>
+
+      {/* Trust Strip */}
+      <section className="py-10" style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
+        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-6 md:gap-10">
+          <p className="text-[15px] text-center md:text-left md:flex-1" style={{ color: 'var(--color-muted)', fontWeight: 500 }}>
+            Built to make standards information easier to find, understand, and act on.
+          </p>
+          <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6">
+            {trustPoints.map(point => (
+              <div key={point} className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#087F5B' }} />
+                <span className="text-[13px]" style={{ color: 'var(--color-text)', fontWeight: 500 }}>{point}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{ background: '#0E2A47' }} className="pt-12 pb-6">
+        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+            <div>
+              <div className="flex items-center gap-2.5 mb-4">
+                <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                  <circle cx="18" cy="18" r="17" fill="#0E2A47" stroke="#CBD5E1" strokeWidth="1" />
+                  <circle cx="18" cy="18" r="11" fill="none" stroke="#087F5B" strokeWidth="2" />
+                  <circle cx="18" cy="18" r="5" fill="#087F5B" />
+                </svg>
+                <div>
+                  <div className="text-[14px] font-bold" style={{ color: '#FFFFFF' }}>BIS AI</div>
+                  <div className="text-[10px] tracking-widest uppercase" style={{ color: '#CBD5E1' }}>Bureau of Indian Standards</div>
+                </div>
+              </div>
+              <p className="text-[12px] leading-5" style={{ color: '#CBD5E1', maxWidth: 200 }}>
+                BIS AI provides informational guidance and does not replace official BIS standards or regulatory requirements.
+              </p>
+            </div>
+            {Object.entries(footerLinks).map(([category, links]) => (
+              <div key={category}>
+                <h4 className="text-[12px] tracking-widest uppercase mb-4" style={{ color: '#CBD5E1', fontWeight: 600 }}>{category}</h4>
+                <ul className="flex flex-col gap-2">
+                  {links.map(link => (
+                    <li key={link}>
+                      <a href="#" className="text-[14px] transition-colors duration-150" style={{ color: '#CBD5E1' }}
+                        onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
+                        onMouseLeave={e => (e.currentTarget.style.color = '#CBD5E1')}
+                      >{link}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div style={{ borderTop: '1px solid rgba(203,213,225,0.2)' }} className="pt-5">
+            <p className="text-[12px] text-center" style={{ color: 'rgba(203,213,225,0.6)' }}>
+              © {new Date().getFullYear()} Bureau of Indian Standards. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 }
