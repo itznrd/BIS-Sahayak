@@ -1,0 +1,10 @@
+{
+  "description": "Create and customize responsive website frontends with an intuitive interface designed for developers and designers to streamline web design workflows.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

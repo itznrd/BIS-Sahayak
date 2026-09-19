@@ -4,13 +4,33 @@ AI assistant for Indian Standards and BIS services. One repository, two
 independently running services.
 
 ```
-bis-assistant/
-├── backend/     FastAPI + RAG pipeline (Python)
-└── frontend/    Next.js chat UI (TypeScript)
+bis-sahayak/
+├── backend/                     FastAPI + RAG pipeline (Python)
+├── frontend/                    Next.js 15 + React 19 UI (TypeScript)
+└── Website Frontend Design/     Original Figma/Vite design source
 ```
 
 They are separate processes that talk over HTTP. Sharing a repo is a
 convenience for version control, not a runtime coupling.
+
+## What's New
+
+- **New UI** — Redesigned frontend with a full landing page, hero section,
+  feature cards, and a polished chat interface ported from the Figma design.
+- **Dark Mode** — Toggle between light and dark themes from any page.
+  Preference is saved in `localStorage` and respects your system preference
+  on first visit.
+- **Next.js 15 + React 19** — Upgraded from Next.js 14 / React 18.
+  Optional Turbopack dev server for faster hot-reload.
+- **Real API integration** — Chat page calls `POST /ask` on the backend and
+  surfaces source chunks alongside answers.
+
+## Pages
+
+| Route | Description |
+|---|---|
+| `/` | Landing page — hero, feature cards, trust strip, footer |
+| `/chat` | AI chat interface connected to the backend RAG pipeline |
 
 ## Running locally
 
@@ -39,10 +59,19 @@ uv run uvicorn main:app --reload --port 8000
 cd frontend
 npm install
 npm run dev                      # http://localhost:3000
+
+# Optional: faster dev builds with Turbopack
+# npm run dev -- --turbopack
 ```
 
 The frontend reads `NEXT_PUBLIC_API_URL` (defaults to `http://localhost:8000`).
 Copy `frontend/.env.local.example` to `.env.local` to change it.
+
+## Dark Mode
+
+Click the **sun/moon icon** in the top-right corner of any page to toggle
+dark mode. The preference is stored in `localStorage` under the key
+`bis-theme` and auto-detects your OS preference on first visit.
 
 ## The thin-server design
 
@@ -116,10 +145,21 @@ Frontend and backend deploy independently to different hosts.
 2. **Backend** → Render, Fly.io, or Hugging Face Spaces. Set the environment
    variables above, including `ALLOWED_ORIGINS` pointing at your frontend URL.
 3. **Frontend** → Vercel. Set `NEXT_PUBLIC_API_URL` to the deployed backend URL.
+   The frontend runs Next.js 15 with React 19; Vercel supports both out of the box.
 
 Railway's free tier after the 30-day trial is 0.5 GB RAM and 0.5 GB disk,
 which this backend fits inside — but only because no ML model is loaded.
 Adding `sentence-transformers` locally would break that.
+
+## Frontend tech stack
+
+| Package | Version | Role |
+|---|---|---|
+| Next.js | 15 | Framework, App Router, SSR |
+| React | 19 | UI library |
+| TypeScript | 5 | Type safety |
+| Tailwind CSS | 3 | Utility styling |
+| Public Sans | — | Typography (Google Fonts) |
 
 ## Sample data
 

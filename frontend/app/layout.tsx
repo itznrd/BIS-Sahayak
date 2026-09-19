@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "BIS Sahayak",
-  description: "AI assistant for Indian Standards and BIS services",
+  title: "BIS Sahayak — AI Assistant for Indian Standards",
+  description:
+    "Get clear guidance on BIS certification, IS codes, licensing, and compliance — powered by AI trained on BIS resources.",
 };
 
 export default function RootLayout({
@@ -12,8 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="font-sans antialiased">{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className="font-sans antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }
